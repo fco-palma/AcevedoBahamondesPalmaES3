@@ -7,7 +7,7 @@ load_dotenv()
 
 DATABASE_URL = os.getenv(
     "DATABASE_URL",
-    "postgresql://muni_user:muni_password@localhost:5432/permisos_vichuquen"
+    "postgresql://muni_user:muni_password@localhost:5433/permisos_vichuquen"
 )
 
 engine = create_engine(DATABASE_URL)
