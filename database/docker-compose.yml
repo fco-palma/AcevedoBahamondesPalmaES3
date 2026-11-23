@@ -1,0 +1,16 @@
+services:
+  db:
+    image: postgres:16
+    container_name: postgres_vichuquen
+    restart: always
+    environment:
+      POSTGRES_USER: muni_user
+      POSTGRES_PASSWORD: muni_password
+      POSTGRES_DB: permisos_vichuquen
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata_vichuquen:/var/lib/postgresql/data
+
+volumes:
+  pgdata_vichuquen:

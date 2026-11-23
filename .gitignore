@@ -1,0 +1,26 @@
+﻿# Python / FastAPI
+venv/
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Secretos y entorno
+.env
+*.env.local
+
+# Node / Angular / Ionic
+node_modules/
+dist/
+.angular/
+www/
+.ionic/
+npm-debug.log*
+
+# IDEs y SO
+.idea/
+.vscode/
+*.iml
+.DS_Store
+Thumbs.db
+desktop.ini
