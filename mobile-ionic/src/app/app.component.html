@@ -1,0 +1,15 @@
+<ion-app>
+  <ion-router-outlet></ion-router-outlet>
+  @if (alert.actual(); as a) {
+    <div class="alerta-flotante" [class]="'alerta-' + a.tipo">
+      <span>{{ a.mensaje }}</span>
+      <ion-button fill="clear" size="small" color="light" (click)="alert.cerrar()">OK</ion-button>
+    </div>
+  }
+  @if (loading.cargando()) {
+    <div class="overlay-movil">
+      <ion-spinner name="crescent" color="light"></ion-spinner>
+      <p>{{ loading.mensaje() }}</p>
+    </div>
+  }
+</ion-app>

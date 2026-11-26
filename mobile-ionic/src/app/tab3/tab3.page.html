@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar color="success">
+    <ion-title>Comprobantes y Boletas</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <ion-refresher slot="fixed" (ionRefresh)="cargarComprobantes($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  @if (comprobantes().length === 0) {
+    <p>Aún no tienes comprobantes de pago emitidos.</p>
+  }
+  @for (comp of comprobantes(); track comp.folio) {
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>{{ comp.folio }}</ion-card-title>
+        <ion-card-subtitle>{{ comp.fecha_pago | date:'dd/MM/yyyy HH:mm' }}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <p><strong>Detalle:</strong> {{ comp.numero_cuota ? 'Cuota ' + comp.numero_cuota + ' de 2' : 'Pago Total' }}</p>
+        <p><strong>Monto Pagado:</strong> {{ comp.monto_pagado | currency:'CLP':'symbol-narrow':'1.0-0' }}</p>
+        <p><strong>Saldo Restante:</strong> {{ comp.saldo_restante | currency:'CLP':'symbol-narrow':'1.0-0' }}</p>
+        <ion-button expand="block" color="success" class="ion-margin-top" (click)="descargarPdf(comp.folio)">
+          Descargar PDF
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+  }
+</ion-content>

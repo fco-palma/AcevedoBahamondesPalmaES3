@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar color="success">
+    <ion-title>Saldos y Cuotas</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <ion-refresher slot="fixed" (ionRefresh)="cargarCompras($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  @if (compras().length === 0) {
+    <p>No registras compras ni saldos pendientes.</p>
+  }
+  @for (c of compras(); track c.id) {
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Compra #{{ c.id }} — Período {{ c.periodo }}</ion-card-title>
+        <ion-card-subtitle>{{ c.modalidad === 'TOTAL' ? 'Pago Total' : 'Plan Dos Cuotas' }}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <p><strong>Total:</strong> {{ c.total_general | currency:'CLP':'symbol-narrow':'1.0-0' }}</p>
+        <p><strong>Pagado:</strong> {{ c.monto_pagado | currency:'CLP':'symbol-narrow':'1.0-0' }}</p>
+        <p><strong>Saldo Pendiente:</strong> {{ c.saldo | currency:'CLP':'symbol-narrow':'1.0-0' }}</p>
+        <ion-badge [color]="c.estado === 'PAGADO' ? 'success' : 'warning'">
+          {{ c.estado.replace('_', ' ') }}
+        </ion-badge>
+        @if (c.cuotas.length > 0) {
+          <ion-list class="ion-margin-top">
+            @for (q of c.cuotas; track q.id) {
+              <ion-item>
+                <ion-label>
+                  <h3>Cuota {{ q.numero_cuota }} de 2 — {{ q.monto | currency:'CLP':'symbol-narrow':'1.0-0' }}</h3>
+                  <p>Estado: {{ q.estado }}</p>
+                </ion-label>
+                @if (q.estado === 'PENDIENTE') {
+                  <ion-button slot="end" size="small" color="primary" [disabled]="loading.cargando()"
+                              (click)="pagarCuota(q.id)">
+                    Pagar
+                  </ion-button>
+                }
+              </ion-item>
+            }
+          </ion-list>
+        }
+      </ion-card-content>
+    </ion-card>
+  }
+</ion-content>

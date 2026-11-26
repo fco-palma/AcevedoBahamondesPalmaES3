@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar color="success">
+    <ion-title>Vichuquén Móvil</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Permisos de Circulación</ion-card-title>
+      <ion-card-subtitle>Consulta de Vehículos, Saldos y Comprobantes</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <form [formGroup]="form" (ngSubmit)="ingresar()">
+        <ion-input
+          label="Correo electrónico"
+          labelPlacement="stacked"
+          fill="outline"
+          type="email"
+          formControlName="correo"
+          class="ion-margin-bottom">
+        </ion-input>
+        <ion-input
+          label="Contraseña"
+          labelPlacement="stacked"
+          fill="outline"
+          type="password"
+          formControlName="password"
+          class="ion-margin-bottom">
+        </ion-input>
+        <ion-button expand="block" color="success" type="submit" [disabled]="loading.cargando()">
+          Ingresar
+        </ion-button>
+      </form>
+      <ion-button expand="block" fill="outline" color="medium" class="ion-margin-top" (click)="probarPing()">
+        Probar Conexión API (Ping)
+      </ion-button>
+      <ion-note class="ion-margin-top" style="display:block;">
+        Cliente demo 1: maria.gonzalez&#64;ejemplo.cl / Cliente2026*<br>
+        Cliente demo 2: carlos.munoz&#64;ejemplo.cl / Cliente2026*
+      </ion-note>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

@@ -1,0 +1,29 @@
+.overlay-movil {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.72);
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+}
+.alerta-flotante {
+  position: fixed;
+  top: 14px;
+  left: 14px;
+  right: 14px;
+  z-index: 99998;
+  padding: 10px 14px;
+  border-radius: 10px;
+  color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+}
+.alerta-success { background: #1b4332; }
+.alerta-danger { background: #b91c1c; }
+.alerta-warning { background: #b45309; }
+.alerta-primary { background: #1d4ed8; }
